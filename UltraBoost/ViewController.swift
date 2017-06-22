@@ -16,6 +16,20 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     // Reference to the button that activates the state picker
     @IBOutlet weak var statePickerBtn: UIButton!
     
+    // Reference to country UI
+    @IBOutlet weak var countryTitle: UILabel!
+    @IBOutlet weak var countryPlaceholder: UITextField!
+    
+    // Reference to zip code UI
+    @IBOutlet weak var zipCodeTitle: UILabel!
+    @IBOutlet weak var zipCodePlaceholder: UITextField!
+    
+    // Reference to the buy now button
+    @IBOutlet weak var buyNowBtn: UIButton!
+    
+    // Reference to the success image
+    @IBOutlet weak var successImage: UIImageView!
+    
     // An array of all the states
     let states = ["Alaska",
                   "Alabama",
@@ -47,7 +61,7 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
                   "Mississippi",
                   "Montana",
                   "North Carolina",
-                  " North Dakota",
+                  "North Dakota",
                   "Nebraska",
                   "New Hampshire",
                   "New Jersey",
@@ -87,6 +101,10 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     // Handles state button functionality, state picker visible
     @IBAction func stateButtonPressed(_ sender: Any) {
         statePicker.isHidden = false
+        countryTitle.isHidden = true
+        zipCodeTitle.isHidden = true
+        countryPlaceholder.isHidden = true
+        zipCodePlaceholder.isHidden = true
     }
     
     // Determines the number of coloumns we want
@@ -108,7 +126,18 @@ class ViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDele
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         statePickerBtn.setTitle(states[row], for: UIControlState.normal)
         statePicker.isHidden = true
+        countryTitle.isHidden = false
+        zipCodeTitle.isHidden = false
+        countryPlaceholder.isHidden = false
+        zipCodePlaceholder.isHidden = false
     }
 
+    @IBAction func buyNowBtnPressed(_ sender: Any) {
+        for view in self.view.subviews as [UIView] {
+            view.isHidden = true
+        }
+        successImage.isHidden = false
+    }
+    
 }
 
